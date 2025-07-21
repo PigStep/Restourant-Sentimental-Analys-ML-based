@@ -21,9 +21,11 @@ async def predict(request: Request):
     print(classifier.predict(data["text"]),f" {text}")
     try:
         prediction = classifier.predict(text)
-        print("positive" if prediction == 1 else "negative")
-        return {
-            "prediction": "positive" if prediction == 1 else "negative",
+        result= {
+            "prediction": "positive" if prediction["prediction"] == 1 else "negative",
+            "confidence": prediction["confidence"]
         }
+        print(result)
+        return result
     except Exception as e:
         return {"error": str(e)}

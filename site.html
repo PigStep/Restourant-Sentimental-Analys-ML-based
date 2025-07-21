@@ -187,16 +187,21 @@
             resultDiv.style.display = 'block';
             
             if (data.prediction === "positive") {
+                const confidencePercent = Math.round(data.confidence * 100);
                 resultDiv.className = 'result positive';
                 emojiDiv.textContent = '😊';
                 resultText.textContent = 'The review is positive! Congratulations';
+                document.getElementById('confidence').textContent = `Confidence: ${confidencePercent}%`;
             } else if (data.prediction === "negative") {
+                const confidencePercent = Math.round(data.confidence * 100);
                 resultDiv.className = 'result negative';
                 emojiDiv.textContent = '😞';
                 resultText.textContent = 'Review is mostly negative...';
+                document.getElementById('confidence').textContent = `Confidence: ${confidencePercent}%`;
             } else {
                 throw new Error('Unexpected response from server');
             }
+            
         })
         .catch(error => {
             loadingDiv.style.display = 'none';

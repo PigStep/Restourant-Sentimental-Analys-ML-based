@@ -4,6 +4,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import joblib
+import numpy as np
 
 nltk.download('punkt_tab')
 nltk.download('stopwords')
@@ -68,5 +69,7 @@ class TextClassifier:
     
     def predict(self, text):
         processed_text = self.preprocessor.preprocess(text)
-        print(preprocessText)
-        return int(self.model.predict([processed_text]))
+        return {
+            "prediction": int(self.model.predict([processed_text])),
+            "confidence": np.max(self.model.predict_proba([processed_text]))
+        }
