@@ -4,7 +4,7 @@ from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-classifier = TextClassifier('restaurant_review_pipelineLR.joblib')
+classifier = TextClassifier("..\model\model.joblib")
 
 app.add_middleware(
     CORSMiddleware,

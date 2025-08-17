@@ -1,0 +1,8 @@
+scikit-learn
+mlflow
+seaborn
+matplotlib
+nltk
+joblib
+numpy
+fastapi
