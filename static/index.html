@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анализатор тональности отзывов</title>
+    <title>Sentimental restourant review analyzator</title>
     <style>
         :root {
             --primary: #4361ee;
@@ -192,12 +192,14 @@
                 emojiDiv.textContent = '😊';
                 resultText.textContent = 'The review is positive! Congratulations';
                 document.getElementById('confidence').textContent = `Confidence: ${confidencePercent}%`;
+
             } else if (data.prediction === "negative") {
                 const confidencePercent = Math.round(data.confidence * 100);
                 resultDiv.className = 'result negative';
                 emojiDiv.textContent = '😞';
-                resultText.textContent = 'Review is mostly negative...';
+                resultText.textContent = 'Review is mostly like negative...';
                 document.getElementById('confidence').textContent = `Confidence: ${confidencePercent}%`;
+
             } else {
                 throw new Error('Unexpected response from server');
             }

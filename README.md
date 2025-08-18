@@ -8,8 +8,6 @@ Click to visit:
 [![MLFlow](https://img.shields.io/badge/MLflow-Experiments-blue)](https://dagshub.com/PigStep/Restourant-Sentimental-Analys-ML-based.mlflow/)
 [![DagsHub](https://img.shields.io/badge/DagsHub-Repo-black)](https://dagshub.com/PigStep/Restourant-Sentimental-Analys-ML-based)
 
-
-
 ## Overview
 
 This repository provides a machine learning-based solution for sentiment analysis of restaurant reviews. It leverages natural language processing (NLP) techniques to classify customer feedback as positive, negative, or neutral, helping restaurants better understand their customer satisfaction and improve their services.
@@ -29,68 +27,80 @@ This repository provides a machine learning-based solution for sentiment analysi
 - pandas
 - numpy
 - matplotlib / seaborn (for visualizations)
+- MLFlow (for experiment tracking)
+- Docker (for containerized deployment)
+
+## Interaction demo
+
+![DEMO GIF](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExejhldXJzaHFyaXM5bm15ZDY1MXYzZjk3dHIzcXZiYWZjazIwaTIxeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2eXZ8qX8AnV1wirssj/giphy.gif)
 
 ## Getting Started
 
-### Prerequisites
-
-- Python 3.7+
-- pip
-
 ### Installation
 
-Clone the repository:
+#### With Docker (easy way)
+
+1. Pull the Docker image from dockerHub:
+
+```bash
+docker pull pigstep/resourant-sentimental-analys:v0.20
+```
+
+2. Run the container:
+
+```bash
+docker run -d -p 8000:8000 pigstep/resourant-sentimental-analys:v0.20
+```
+
+3. Access the application at `http://localhost:8000`.
+
+#### Without docker
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/PigStep/Restourant-Sentimental-Analys-ML-based.git
 cd Restourant-Sentimental-Analys-ML-based
 ```
 
-Install dependencies:
+2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Usage
-
-1. Prepare your dataset containing restaurant reviews (see `data/` folder for examples).
-2. Run the main script to train and test the sentiment analysis model:
+3. Run the main script with uvicorn:
 
 ```bash
-python main.py
+cd Restourant-Sentimental-Analys-ML-based/src
+uvicorn main:app --reload
 ```
 
-3. View results and visualizations in the output directory.
+4. Access the application at `http://localhost:8000`.
 
 ## Project Structure
 
 ```
-Restourant-Sentimental-Analys-ML-based/
-│
-├── data/                 # Sample datasets
-├── models/               # Saved model files
-├── src/                  # Source code
-│   ├── preprocessing.py  # Data cleaning and preprocessing
-│   ├── train.py          # Model training
-│   ├── predict.py        # Sentiment prediction
-│   └── utils.py          # Utility functions
-├── requirements.txt      # Python dependencies
-├── main.py               # Main entry point
-└── README.md             # Project documentation
+Restourant‑Sentimental‑Analys‑ML‑based/
+├── .gitattributes           
+├── Dockerfile               # Docker image definition
+├── README.md                # Project documentation
+├── requirements.txt         # Python dependencies
+├── src/
+│   ├── main.py              # FastAPI application entry point
+│   ├── TextClassifier.py    # Wrapper around the trained model
+│   └── mlflow_logging.py    # Functions for experiment tracking
+├── experiment_notebook/
+│   ├── baseline_model.ipynb   # Logistic‑Regression experiments
+│   ├── SVM_model.ipynb        # SVM experiments
+│   └── data_preparation.ipynb # Data download and cleaning
+└── static/
+    └── index.html           # Front‑end landing page served by FastAPI
 ```
 
-## Example
+## Quick start with API
 
-Sample usage for sentiment prediction:
-
-```python
-from src.predict import predict_sentiment
-
-review = "The food was absolutely wonderful, from preparation to presentation, very pleasing."
-sentiment = predict_sentiment(review)
-print(f"Sentiment: {sentiment}")
-```
+soon
 
 ## Contributing
 

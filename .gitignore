@@ -179,4 +179,10 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# From dagshub DVC control
 data
+# Additional created files while working
+/content
+/kaggle
+*.joblib
