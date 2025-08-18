@@ -180,6 +180,8 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# From dagshub DVC control
+data
 # Additional created files while working
 /content
 /kaggle
